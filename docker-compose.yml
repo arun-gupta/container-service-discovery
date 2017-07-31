@@ -1,0 +1,12 @@
+version: '3'
+services:
+  greeter:
+    build: ./services/greeter
+    image: arungupta/greeter-service
+    ports:
+      - 49160:8080
+  name:
+    build: ./services/name
+    image: arungupta/name-service
+    ports:
+      - 49161:8081

@@ -1,0 +1,11 @@
+== Build Docker Images for Services
+
+docker-compose build
+
+== Run Docker Container for Services
+
+docker-compose up -d
+
+== Access service
+
+curl localhost:49160; curl localhost:49161
