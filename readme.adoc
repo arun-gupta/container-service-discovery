@@ -27,5 +27,12 @@ npm install
 npm start
 ```
 +
-Access http://localhost:8080 in the browser
+. Access the following URLs:
++
+```
+http://localhost:8080
+http://localhost:8080?greet=ho
+http://localhost:8080?id=1
+http://localhost:8080?greet=ho&id=1
+```
 

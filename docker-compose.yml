@@ -9,4 +9,4 @@ services:
     build: ./services/name
     image: arungupta/name-service
     ports:
-      - 49161:8081
+      - 49161:8080

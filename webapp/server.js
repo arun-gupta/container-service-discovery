@@ -11,9 +11,15 @@ const HOST = '0.0.0.0';
 // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send(get("http://localhost:49160") 
+  var greet = req.query['greet'];
+  var id = req.query['id'];
+
+  console.log('greet: ' + greet);
+  console.log('id: ' + id);
+
+  res.send(get("http://localhost:49160?greet=" + greet) 
   	+ ' '  
-  	+ get("http://localhost:49161"));
+  	+ get("http://localhost:49161?id=" + id));
 });
 
 function get(url) {
