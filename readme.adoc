@@ -1,6 +1,6 @@
-= Service Discovery for Amazon ECS
+= Service Discovery in Container Orchestration Frameworks
 
-This repo has a simple example that shows service discovery for Amazon EC2 Container Service.
+This repo has a simple example that shows service discovery for different container orchestration frameworks.
 
 == Build services
 
