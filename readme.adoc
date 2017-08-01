@@ -2,7 +2,7 @@
 
 This repo has a simple example that shows service discovery for Amazon EC2 Container Service.
 
-== Build Docker Images for Services
+== Build Services
 
 This is an optional step as images are already available in Docker Hub.
 
@@ -10,7 +10,7 @@ This is an optional step as images are already available in Docker Hub.
 docker-compose build
 ```
 
-== Run Docker Container for Services
+== Run Services
 
 ```
 docker-compose up -d
