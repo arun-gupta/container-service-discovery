@@ -1,3 +1,7 @@
+= Service Discovery for Amazon ECS
+
+This repo has a simple example that shows service discovery for Amazon EC2 Container Service.
+
 == Build Docker Images for Services
 
 docker-compose build
@@ -8,4 +12,14 @@ docker-compose up -d
 
 == Access service
 
-curl localhost:49160; curl localhost:49161
+. Using CLI: curl localhost:49160; curl localhost:49161
+. Using Node web application:
++
+```
+cd webapp
+npm install
+npm start
+```
++
+Access http://localhost:8080 in the browser
+
