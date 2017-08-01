@@ -10,13 +10,16 @@ This is an optional step as images are already available in Docker Hub.
 docker-compose build
 ```
 
-== Run services (needs debugging)
+== Run services
+
+=== Using Docker
 
 ```
+docker swarm init
 docker stack up --compose-file=docker-compose.yml webapp
 ```
 
-== Access service using web application (needs debugging)
+== Access service using web application
 
 Access the following URLs:
 
@@ -29,7 +32,10 @@ http://localhost:8080?greet=ho&id=1
 
 == Delete services
 
+=== Using Docker
+
 ```
 docker stack rm webapp
+docker swarm leave -f
 ```
 
