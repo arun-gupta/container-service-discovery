@@ -4,15 +4,21 @@ This repo has a simple example that shows service discovery for Amazon EC2 Conta
 
 == Build Docker Images for Services
 
+This is an optional step as images are already available in Docker Hub.
+
+```
 docker-compose build
+```
 
 == Run Docker Container for Services
 
+```
 docker-compose up -d
+```
 
-== Access service
+== Access service using web application
 
-. Using CLI: curl localhost:49160; curl localhost:49161
+. Using CLI: `curl localhost:49160; curl localhost:49161`
 . Using Node web application:
 +
 ```
