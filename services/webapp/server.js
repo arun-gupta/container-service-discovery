@@ -17,9 +17,9 @@ app.get('/', (req, res) => {
   console.log('greet: ' + greet);
   console.log('id: ' + id);
 
-  res.send(get("http://localhost:49160?greet=" + greet) 
+  res.send(get("http://greeter:49160?greet=" + greet)
   	+ ' '  
-  	+ get("http://localhost:49161?id=" + id));
+  	+ get("http://name:49161?id=" + id));
 });
 
 function get(url) {
