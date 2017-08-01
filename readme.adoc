@@ -10,6 +10,16 @@ This is an optional step as images are already available in Docker Hub.
 docker-compose build
 ```
 
+Three services:
+
+                  |-------> greeter-service
+webapp-service ---
+                  |-------> name-service
+
+. `webapp-service`: A simple Node.js application that queries `greeter` and `name` service to generate a greeting.
+. `greeter-service`: A simple Node.js application that returns a greeting based upon abbreviation identified using `greet` name/value keypair in the URL
+. `name-service`: A simple Node.js application that returns a name based upon id identified using `id` name/value keypair in the URL
+
 == Run services
 
 === Using Docker
