@@ -10,3 +10,11 @@ services:
     image: arungupta/name-service
     ports:
       - 49161:8080
+  webapp:
+    build: ./services/webapp
+    image: arungupta/webapp
+    ports:
+      - 8080:8080
+    depends_on:
+      - greeter
+      - name
