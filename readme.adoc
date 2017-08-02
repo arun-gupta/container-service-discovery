@@ -23,7 +23,7 @@ These can be configured in `services/webapp/package.json`.
 
 == Build services
 
-This is an optional step as images are already available in Docker Hub.
+Build the Docker images for different services:
 
 ```
 docker-compose build
@@ -50,7 +50,7 @@ docker stack up --compose-file=docker-compose.yml webapp
 
 == Access service using web application
 
-Access the following URLs:
+Access the following URLs using curl or in browser:
 
 ```
 http://localhost:8080
