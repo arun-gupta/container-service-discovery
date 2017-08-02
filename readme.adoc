@@ -4,7 +4,7 @@ This repo has a simple example that shows service discovery for different contai
 
 The sample application uses three services:
 
-images::image/services.png[]
+images::images/services.png[]
 
 . `webapp`: A simple Node.js application that queries `greeter` and `name` service to generate a greeting.
 . `greeter`: A simple Node.js application that returns a greeting based upon `greet` name/value keypair in the URL
