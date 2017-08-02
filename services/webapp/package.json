@@ -5,7 +5,7 @@
   "author": "Arun Gupta",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js greeter 8080 name 8080"
   },
   "dependencies": {
     "express": "^4.13.3",
