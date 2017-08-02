@@ -10,12 +10,14 @@ image::images/services.png[]
 . `greeter`: A service returns a greeting based upon `greet` name/value keypair in the URL.
 . `name`: A service that returns person's name based upon `id` name/value keypair in the URL.
 
-All services are built as Node.js application. `services/webapp/package.json` takes four parameters:
+All services are built as Node.js application. `webapp` service need to be configured using four parameters:
 
 . greeter service host
 . greeter service port
 . name service host
 . name service port
+
+These can be configured in `services/webapp/package.json`.
 
 `greeter` and `name` services should be deployed as-is.
 
