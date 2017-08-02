@@ -4,11 +4,20 @@ This repo has a simple example that shows service discovery for different contai
 
 The sample application uses three services:
 
-images::images/services.png[]
+image::images/services.png[]
 
-. `webapp`: A simple Node.js application that queries `greeter` and `name` service to generate a greeting.
-. `greeter`: A simple Node.js application that returns a greeting based upon `greet` name/value keypair in the URL
-. `name`: A simple Node.js application that returns a name based upon `id` name/value keypair in the URL
+. `webapp`: Web application queries `greeter` and `name` service to generate a greeting for a person.
+. `greeter`: A service returns a greeting based upon `greet` name/value keypair in the URL.
+. `name`: A service that returns person's name based upon `id` name/value keypair in the URL.
+
+All services are built as Node.js application. `services/webapp/package.json` takes four parameters:
+
+. greeter service host
+. greeter service port
+. name service host
+. name service port
+
+`greeter` and `name` services should be deployed as-is.
 
 == Build services
 
@@ -17,9 +26,20 @@ This is an optional step as images are already available in Docker Hub.
 ```
 docker-compose build
 ```
+
 == Run services
 
 === Using Docker
+
+Make sure `services/webapp/package.json` is starting the service as:
+
+```
+"start": "node server.js greeter 8080 name 8080"
+```
+
+You may have to re-build the images.
+
+Then start the services:
 
 ```
 docker swarm init
