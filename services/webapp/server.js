@@ -11,10 +11,16 @@ const HOST = '0.0.0.0';
 // App
 const app = express();
 app.get('/', (req, res) => {
-    var args = process.argv.slice(2);
-
-    var greeter = "http://" + process.env.GREETER_SERVICE_NAME + ":" + process.env.GREETER_SERVICE_PORT + "?greet=" + req.query['greet'];
-    var name = "http://" + process.env.NAME_SERVICE_NAME + ":" + process.env.NAME_SERVICE_PORT + "?id=" + req.query['id'];
+    var greeter = "http://" 
+    	+ process.env.GREETER_SERVICE_HOST 
+    	+ ":" + process.env.GREETER_SERVICE_PORT 
+    	+ "/" + process.env.GREETER_SERVICE_PATH
+    	+ "?greet=" + req.query['greet'];
+    var name = "http://" 
+    	+ process.env.NAME_SERVICE_HOST 
+    	+ ":" + process.env.NAME_SERVICE_PORT 
+    	+ "/" + process.env.NAME_SERVICE_PATH
+    	+ "?id=" + req.query['id'];
     console.log('greeter: ' + greeter);
     console.log('name: ' + name);
 

@@ -12,10 +12,12 @@ image::images/services.png[]
 
 All services are built as Node.js application. `webapp` service need to be configured using four parameters:
 
-. `GREETER_SERVICE_NAME`
+. `GREETER_SERVICE_HOST`
 . `GREETER_SERCICE_PORT`
+. `GREETER_SERCICE_PATH`
 . `NAME_SERVICE_HOST`
 . `NAME_SERVICE_PORT`
+. `NAME_SERVICE_PATH`
 
 == Build services
 
