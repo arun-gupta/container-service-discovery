@@ -12,14 +12,10 @@ image::images/services.png[]
 
 All services are built as Node.js application. `webapp` service need to be configured using four parameters:
 
-. greeter service host
-. greeter service port
-. name service host
-. name service port
-
-These can be configured in `services/webapp/package.json`.
-
-`greeter` and `name` services should be deployed as-is.
+. `GREETER_SERVICE_NAME`
+. `GREETER_SERCICE_PORT`
+. `NAME_SERVICE_HOST`
+. `NAME_SERVICE_PORT`
 
 == Build services
 
@@ -33,15 +29,9 @@ docker-compose build
 
 === Using Docker
 
-Make sure `services/webapp/package.json` is starting the service as:
+The four parameter values are defined in `docker-compose.yml`.
 
-```
-"start": "node server.js greeter 8080 name 8080"
-```
-
-You may have to re-build the images.
-
-Then start the services:
+Start the services:
 
 ```
 docker swarm init

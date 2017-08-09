@@ -2,15 +2,20 @@ version: '3'
 services:
   greeter:
     build: ./services/greeter
-    image: greeter-service
+    image: arungupta/greeter-service
   name:
     build: ./services/name
-    image: name-service
+    image: arungupta/name-service
   webapp:
     build: ./services/webapp
-    image: webapp-service
+    image: arungupta/webapp-service
     ports:
       - 8080:8080
     depends_on:
       - greeter
       - name
+    environment:
+      - GREETER_SERVICE_NAME=greeter
+      - GREETER_SERVICE_PORT=8080
+      - NAME_SERVICE_NAME=name
+      - NAME_SERVICE_PORT=8080

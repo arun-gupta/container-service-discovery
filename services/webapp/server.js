@@ -13,8 +13,8 @@ const app = express();
 app.get('/', (req, res) => {
     var args = process.argv.slice(2);
 
-    var greeter = "http://" + args[0] + ":" + args[1] + "?greet=" + req.query['greet'];
-    var name = "http://" + args[2] + ":" + args[3] + "?id=" + req.query['id'];
+    var greeter = "http://" + process.env.GREETER_SERVICE_NAME + ":" + process.env.GREETER_SERVICE_PORT + "?greet=" + req.query['greet'];
+    var name = "http://" + process.env.NAME_SERVICE_NAME + ":" + process.env.NAME_SERVICE_PORT + "?id=" + req.query['id'];
     console.log('greeter: ' + greeter);
     console.log('name: ' + name);
 
