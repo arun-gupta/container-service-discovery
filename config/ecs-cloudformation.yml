@@ -1,0 +1,253 @@
+Parameters:
+   EcsCluster:
+      Type: String
+   EcsServiceRole:
+      Type: String
+   VPC:
+      Type: AWS::EC2::VPC::Id
+   Subnets:
+      Type: List<AWS::EC2::Subnet::Id>
+   SecurityGroup:
+      Type: AWS::EC2::SecurityGroup::Id
+ 
+Resources:
+ 
+## Target Groups ##
+ 
+   NameTargetGroup:
+      Type: "AWS::ElasticLoadBalancingV2::TargetGroup"
+      Properties:
+         HealthCheckIntervalSeconds: 10
+         HealthCheckPath: "/"
+         HealthCheckPort: traffic-port
+         HealthCheckProtocol: HTTP
+         HealthCheckTimeoutSeconds: 5
+         HealthyThresholdCount: 5
+         Matcher:
+            HttpCode: 200
+         Name: name-target-group
+         Port: 80
+         Protocol: HTTP
+         TargetGroupAttributes:
+            - Key: deregistration_delay.timeout_seconds
+              Value: 30
+         UnhealthyThresholdCount: 5
+         VpcId: !Ref VPC
+ 
+   GreeterTargetGroup:
+      Type: "AWS::ElasticLoadBalancingV2::TargetGroup"
+      Properties:
+         Name: greeter-target-group
+         HealthCheckIntervalSeconds: 10
+         HealthCheckPath: "/"
+         HealthCheckPort: traffic-port
+         HealthCheckProtocol: HTTP
+         HealthCheckTimeoutSeconds: 5
+         HealthyThresholdCount: 5
+         Matcher:
+            HttpCode: 200
+         Port: 80
+         Protocol: HTTP
+         TargetGroupAttributes:
+            - Key: deregistration_delay.timeout_seconds
+              Value: 30
+         UnhealthyThresholdCount: 5
+         VpcId: !Ref VPC
+ 
+   WebAppTargetGroup:
+      Type: "AWS::ElasticLoadBalancingV2::TargetGroup"
+      Properties:
+         Name: webapp-target-group
+         HealthCheckIntervalSeconds: 10
+         HealthCheckPath: "/"
+         HealthCheckPort: traffic-port
+         HealthCheckProtocol: HTTP
+         HealthCheckTimeoutSeconds: 5
+         HealthyThresholdCount: 5
+         Matcher:
+            HttpCode: 200
+         Port: 80
+         Protocol: HTTP
+         TargetGroupAttributes:
+            - Key: deregistration_delay.timeout_seconds
+              Value: 30
+         UnhealthyThresholdCount: 5
+         VpcId: !Ref VPC
+ 
+ 
+## External Load Balancer ##
+ 
+   ExternalLoadBalancer:
+      Type: "AWS::ElasticLoadBalancingV2::LoadBalancer"
+      Properties:
+         Name: lb-external
+         Scheme: internet-facing
+         SecurityGroups:
+            - !Ref SecurityGroup
+         Subnets:
+            - !Select [0, !Ref Subnets]
+            - !Select [1, !Ref Subnets]
+            - !Select [2, !Ref Subnets]
+         IpAddressType: ipv4
+ 
+   ExternalListener:
+      Type: "AWS::ElasticLoadBalancingV2::Listener"
+      Properties:
+         DefaultActions:
+            - Type: forward
+              TargetGroupArn: !Ref WebAppTargetGroup
+         LoadBalancerArn: !Ref ExternalLoadBalancer
+         Port: 80
+         Protocol: HTTP
+ 
+## Internal Load Balancer ##
+ 
+   InternalLoadBalancer:
+      Type: "AWS::ElasticLoadBalancingV2::LoadBalancer"
+      Properties:
+         Name: lb-internal
+         Scheme: internal
+         SecurityGroups:
+            - !Ref SecurityGroup
+         Subnets:
+            - !Select [0, !Ref Subnets]
+            - !Select [1, !Ref Subnets]
+            - !Select [2, !Ref Subnets]
+         IpAddressType: ipv4
+ 
+   InternalListener:
+      Type: "AWS::ElasticLoadBalancingV2::Listener"
+      Properties:
+         DefaultActions:
+            - Type: forward
+              TargetGroupArn: !Ref GreeterTargetGroup
+         LoadBalancerArn: !Ref InternalLoadBalancer
+         Port: 80
+         Protocol: HTTP
+ 
+   GreeterRule:
+      Type: "AWS::ElasticLoadBalancingV2::ListenerRule"
+      Properties:
+         Actions:
+            - Type: forward
+              TargetGroupArn: !Ref GreeterTargetGroup
+         Conditions:
+            - Field: path-pattern
+              Values:
+                 - "/greeter*"
+         ListenerArn: !Ref InternalListener
+         Priority: 1
+ 
+   NameRule:
+      Type: "AWS::ElasticLoadBalancingV2::ListenerRule"
+      Properties:
+         Actions:
+            - Type: forward
+              TargetGroupArn: !Ref NameTargetGroup
+         Conditions:
+            - Field: path-pattern
+              Values:
+                 - "/name*"
+         ListenerArn: !Ref InternalListener
+         Priority: 2
+ 
+## Task Definitions
+ 
+   NameTaskDefinition:
+      Type: "AWS::ECS::TaskDefinition"
+      Properties:
+         Family: name
+         NetworkMode: bridge
+         ContainerDefinitions:
+            - Name: name
+              Image: dastbe/name
+              Cpu: 512
+              Memory: 512
+              Essential: True
+              PortMappings:
+                 - ContainerPort: 8080
+                   Protocol: tcp
+ 
+   GreeterTaskDefinition:
+      Type: "AWS::ECS::TaskDefinition"
+      Properties:
+         Family: greeter
+         NetworkMode: bridge
+         ContainerDefinitions:
+            - Name: greeter
+              Image: dastbe/greeter
+              Cpu: 512
+              Memory: 512
+              Essential: True
+              PortMappings:
+                 - ContainerPort: 8080
+                   Protocol: tcp
+ 
+   WebAppTaskDefinition:
+      Type: "AWS::ECS::TaskDefinition"
+      Properties:
+         Family: webapp
+         NetworkMode: bridge
+         ContainerDefinitions:
+            - Name: webapp
+              Image: dastbe/webapp
+              Cpu: 512
+              Memory: 512
+              Essential: True
+              Environment:
+                 - Name: GREETER_SERVICE_NAME
+                   Value: !GetAtt InternalLoadBalancer.DNSName
+                 - Name: GREETER_SERVICE_PORT
+                   Value: 80
+                 - Name: NAME_SERVICE_NAME
+                   Value: !GetAtt InternalLoadBalancer.DNSName
+                 - Name: NAME_SERVICE_PORT
+                   Value: 80
+              PortMappings:
+                 - ContainerPort: 8080
+                   Protocol: tcp
+ 
+## Services ##
+ 
+   NameService:
+      Type: "AWS::ECS::Service"
+      DependsOn:
+         - NameRule
+      Properties:
+         TaskDefinition: !Ref NameTaskDefinition
+         DesiredCount: 1
+         LoadBalancers:
+            - TargetGroupArn: !Ref NameTargetGroup
+              ContainerPort: 8080
+              ContainerName: name
+         Role: !Ref EcsServiceRole
+         Cluster: !Ref EcsCluster
+ 
+   GreeterService:
+      Type: "AWS::ECS::Service"
+      DependsOn:
+         - GreeterRule
+      Properties:
+         TaskDefinition: !Ref GreeterTaskDefinition
+         DesiredCount: 1
+         LoadBalancers:
+            - TargetGroupArn: !Ref GreeterTargetGroup
+              ContainerPort: 8080
+              ContainerName: greeter
+         Role: !Ref EcsServiceRole
+         Cluster: !Ref EcsCluster
+ 
+   WebAppService:
+      Type: "AWS::ECS::Service"
+      DependsOn:
+         - GreeterService
+         - NameService
+      Properties:
+         TaskDefinition: !Ref WebAppTaskDefinition
+         DesiredCount: 1
+         LoadBalancers:
+            - TargetGroupArn: !Ref WebAppTargetGroup
+              ContainerPort: 8080
+              ContainerName: webapp
+         Role: !Ref EcsServiceRole
+         Cluster: !Ref EcsCluster
