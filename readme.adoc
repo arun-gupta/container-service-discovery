@@ -42,16 +42,9 @@ docker stack up --compose-file=docker-compose.yml webapp
 
 === Using ECS
 
-image::images/ecs-services.png[]
+Setup cluster and configure services as explained in link:ecs.adoc[Service Discovery for Microservices with Amazon ECS].
 
-. Create Target Groups
-. Create Load Balancer
-.. Create rules for `name` and `greeter` service
-.. Container instance and LB should be in same security group
-.. All resources should use the same VPC
-. Create Task Definitions
-. Create Service
-.. Optionally, check health status in Target Groups
+image::images/ecs-services.png[]
 
 == Access service using web application
 
@@ -67,12 +60,9 @@ http://<host>:<port>?greet=ho&id=1
 [options="header"]
 |=======
 |Framework |<host> |<port>
-|<host> |`localhost` |`8080`
-|<port> |External ALB Address |`80`
+| <host> | `localhost` | `8080`
+| <port> | External ALB Address | `80`
 |=======
-
-<host> is `localhost` for Docker, External Application Load Balancer address for ECS.
-<port> is `8080` for Docker
 
 == Delete services
 
@@ -85,5 +75,10 @@ docker swarm leave -f
 
 === Using ECS
 
-TBD
+. Delete ALB
+. Delete Target Groups
+. Scale down all services
+. Deregister tasks
+. Delete services
+. Delete cluster
 
