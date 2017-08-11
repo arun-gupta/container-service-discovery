@@ -58,11 +58,21 @@ image::images/ecs-services.png[]
 Access the following URLs using curl or in browser:
 
 ```
-http://localhost:8080
-http://localhost:8080?greet=ho
-http://localhost:8080?id=1
-http://localhost:8080?greet=ho&id=1
+http://<host>:<port>
+http://<host>:<port>0?greet=ho
+http://<host>:<port>?id=1
+http://<host>:<port>?greet=ho&id=1
 ```
+
+[options="header"]
+|=======
+|Framework |<host> |<port>
+|<host> |`localhost` |`8080`
+|<port> |External ALB Address |`80`
+|=======
+
+<host> is `localhost` for Docker, External Application Load Balancer address for ECS.
+<port> is `8080` for Docker
 
 == Delete services
 
@@ -72,4 +82,8 @@ http://localhost:8080?greet=ho&id=1
 docker stack rm webapp
 docker swarm leave -f
 ```
+
+=== Using ECS
+
+TBD
 
