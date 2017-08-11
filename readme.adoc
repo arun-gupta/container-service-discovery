@@ -40,6 +40,17 @@ docker swarm init
 docker stack up --compose-file=docker-compose.yml webapp
 ```
 
+=== Using ECS
+
+. Create Target Groups
+. Create Load Balancer
+.. Create rules for `name` and `greeter` service
+.. Container instance and LB should be in same security group
+.. All resources should use the same VPC
+. Create Task Definitions
+. Create Service
+.. Optionally, check health status in Target Groups
+
 == Access service using web application
 
 Access the following URLs using curl or in browser:
