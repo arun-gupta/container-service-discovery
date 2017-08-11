@@ -42,6 +42,8 @@ docker stack up --compose-file=docker-compose.yml webapp
 
 === Using ECS
 
+image::images/ecs-services.png[]
+
 . Create Target Groups
 . Create Load Balancer
 .. Create rules for `name` and `greeter` service
