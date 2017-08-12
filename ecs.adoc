@@ -2,6 +2,10 @@
 
 = Service Discovery for Microservices with Amazon ECS
 
+This document explains how to setup a Amazon ECS cluster and configure service discovery. Read link:readme.adoc[Service Discovery in Container Orchestration Frameworks on AWS] for more details.
+
+image::images/ecs-services.png[]
+
 == Create Cluster
 
 [.thumb]
