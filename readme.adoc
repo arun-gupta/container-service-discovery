@@ -75,10 +75,10 @@ docker swarm leave -f
 
 === Using ECS
 
+. Scale down all services
+. Delete services
+. Deregister tasks
 . Delete ALB
 . Delete Target Groups
-. Scale down all services
-. Deregister tasks
-. Delete services
 . Delete cluster
 
