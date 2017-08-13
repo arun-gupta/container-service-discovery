@@ -61,7 +61,7 @@ spec:
     app: webapp-pod
   ports:
     - port: 8080
-  type: LoadBalancer
+  type: ClusterIP
 ---
 apiVersion: extensions/v1beta1
 kind: ReplicaSet
