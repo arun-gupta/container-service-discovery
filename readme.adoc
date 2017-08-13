@@ -6,18 +6,18 @@ The sample application uses three services:
 
 image::images/services.png[]
 
-. `webapp`: Web application queries `greeter` and `name` service to generate a greeting for a person.
-. `greeter`: A service returns a greeting based upon `greet` name/value keypair in the URL.
-. `name`: A service that returns person's name based upon `id` name/value keypair in the URL.
+. `webapp`: Web application microservice uses `greeter` and `name` microservice to generate a greeting for a person.
+. `greeter`: A microservice returns a greeting based upon `greet` name/value keypair in the URL.
+. `name`: A microservice that returns person's name based upon `id` name/value keypair in the URL.
 
-All services are built as Node.js application. `webapp` service need to be configured using four parameters:
+All services are built as Node.js application. `webapp` service need to be configured using the following parameters:
 
-. `GREETER_SERVICE_HOST`
-. `GREETER_SERCICE_PORT`
-. `GREETER_SERCICE_PATH`
 . `NAME_SERVICE_HOST`
 . `NAME_SERVICE_PORT`
 . `NAME_SERVICE_PATH`
+. `GREETER_SERVICE_HOST`
+. `GREETER_SERVICE_PORT`
+. `GREETER_SERVICE_PATH`
 
 == Build services
 
@@ -31,20 +31,32 @@ docker-compose build
 
 === Using Docker
 
-The four parameter values are defined in `docker-compose.yml`.
+The parameter values are defined in `config/docker-compose.yml`.
 
 Start the services:
 
 ```
 docker swarm init
-docker stack up --compose-file=docker-compose.yml webapp
+docker stack up --compose-file=config/docker-compose.yml webapp
 ```
 
 === Using ECS
 
-Setup cluster and configure services as explained in link:ecs.adoc[Service Discovery for Microservices with Amazon ECS].
+Setup an ECS cluster and configure services as explained in link:ecs.adoc[Service Discovery for Microservices with Amazon ECS].
 
 image::images/ecs-services.png[]
+
+=== Using Kubernetes
+
+Start a single node Kubernetes cluster using minikube. Create resources:
+
+```
+kubectl create -f config/k8s-config.yml
+kubectl expose service webapp-service --port=8080 --target-port=8080 --name=web
+kubectl proxy
+```
+
+Access endpoint: `curl http://localhost:8001/api/v1/proxy/namespaces/default/services/web/` ??
 
 == Access service using web application
 
