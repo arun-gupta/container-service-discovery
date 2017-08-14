@@ -6,7 +6,7 @@ spec:
   selector: 
     app: name-pod
   ports:
-    - port: 8081
+    - port: 8080
 ---
 apiVersion: extensions/v1beta1
 kind: ReplicaSet
@@ -33,7 +33,7 @@ spec:
   selector: 
     app: greeter-pod
   ports:
-    - port: 8082
+    - port: 8080
 ---
 apiVersion: extensions/v1beta1
 kind: ReplicaSet
@@ -60,21 +60,20 @@ spec:
   selector: 
     app: webapp-pod
   ports:
-    - port: 8080
+    - name: web
+      port: 8080
   type: ClusterIP
 ---
 apiVersion: extensions/v1beta1
 kind: ReplicaSet
 metadata:
   name: webapp-rs
-  labels:
-    name: webapp
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: webapp
+        app: webapp-pod
     spec:
       containers:
       - name: webapp-pod
@@ -83,13 +82,13 @@ spec:
         - name: NAME_SERVICE_HOST
           value: name-service
         - name: NAME_SERVICE_PORT
-          value: "8081"
+          value: "8080"
         - name: NAME_SERVICE_PATH
           value: /
         - name: GREETER_SERVICE_HOST
           value: greeter-service
         - name: GREETER_SERVICE_PORT
-          value: "8082"
+          value: "8080"
         - name: GREETER_SERVICE_PATH
           value: /
         ports:
