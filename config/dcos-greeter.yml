@@ -1,0 +1,16 @@
+{  
+  "id":"/greeter",
+  "cpus":2,
+  "mem":1024,
+  "instances":1,
+  "container":{  
+    "type":"DOCKER",
+    "docker":{  
+      "image":"arungupta/greeter-service:latest",
+      "network":"USER"
+    }
+  },
+  "ipAddress":{  
+    "networkName":"dcos"
+  }
+}

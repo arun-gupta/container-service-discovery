@@ -62,9 +62,16 @@ Access endpoint: `curl http://localhost:8001/api/v1/proxy/namespaces/default/ser
 
 === Using DC/OS
 
-Install DC/OS on AWS using https://downloads.dcos.io/dcos/stable/1.9.1/aws.html?_ga=2.16283190.123750055.1502715145-1655111557.1497965615[Cloud Formation] templates.
-
-Download and configure https://docs.mesosphere.com/1.9/cli/configure/[DC/OS CLI].
+. Install DC/OS on AWS using https://downloads.dcos.io/dcos/stable/1.9.1/aws.html?_ga=2.16283190.123750055.1502715145-1655111557.1497965615[Cloud Formation] templates.
+. Download and configure https://docs.mesosphere.com/1.9/cli/configure/[DC/OS CLI].
+. Deploy the application:
++
+```
+dcos marathon app add config/dcos-name.yml
+dcos marathon app add config/dcos-greeter.yml
+dcos marathon app add config/dcos-webapp.yml
+```
++
 
 == Access service using web application
 
