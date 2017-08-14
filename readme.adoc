@@ -1,5 +1,7 @@
 = Service Discovery in Container Orchestration Frameworks on AWS
 
+:toc:
+
 This repo has a simple example that shows service discovery for different container orchestration frameworks.
 
 The sample application uses three services:
