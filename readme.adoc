@@ -71,7 +71,6 @@ dcos marathon app add config/dcos-name.yml
 dcos marathon app add config/dcos-greeter.yml
 dcos marathon app add config/dcos-webapp.yml
 ```
-+
 
 == Access service using web application
 
