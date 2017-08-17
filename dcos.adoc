@@ -2,14 +2,17 @@
 
 = Service Discovery for Microservices with Mesosphere DC/OS
 
-This document is referred from link:readme.adoc[Service Discovery in Container Orchestration Frameworks on AWS]. It explains how to setup a Amazon EC2 Container Service cluster and configure service discovery. Refer link:readme.adoc[back] for more details.
+This document is referred from link:readme.adoc[Service Discovery in Container Orchestration Frameworks on AWS]. It explains how to setup a DC/OS cluster and configure service discovery. Refer link:readme.adoc[back] for more details.
 
 
 Setup:
-`dcos package install marathon-lb`
-`dcos package install marathon-lb --options=config/dcos-marathon-lb-internal.json`
-`dcos marathon app add config/dcos-greeter.json`
-`dcos marathon app add config/dcos-name.json`
-`dcos marathon app add config/dcos-webapp.json`
+
+```
+dcos package install marathon-lb
+dcos package install marathon-lb --options=config/dcos-marathon-lb-internal.json
+dcos marathon app add config/dcos-greeter.json
+dcos marathon app add config/dcos-name.json
+dcos marathon app add config/dcos-webapp.json
+```
 
 
