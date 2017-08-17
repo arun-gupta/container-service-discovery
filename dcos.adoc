@@ -4,8 +4,7 @@
 
 This document is referred from link:readme.adoc[Service Discovery in Container Orchestration Frameworks on AWS]. It explains how to setup a DC/OS cluster and configure service discovery. Refer link:readme.adoc[back] for more details.
 
-
-Setup:
+Install the following components:
 
 ```
 dcos package install marathon-lb
@@ -14,5 +13,4 @@ dcos marathon app add config/dcos-greeter.json
 dcos marathon app add config/dcos-name.json
 dcos marathon app add config/dcos-webapp.json
 ```
-
 
