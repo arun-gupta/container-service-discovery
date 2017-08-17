@@ -1,0 +1,23 @@
+{
+  "id": "/name",
+  "cpus": 1,
+  "mem": 1024,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "arungupta/name-service:latest",
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "hostPort": 0,
+          "containerPort": 8080,
+          "servicePort": 10001
+        }
+      ]
+    }
+  },
+  "labels": {
+    "HAPROXY_GROUP": "internal"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "marathon-lb":{
+    "name":"marathon-lb-internal",
+    "haproxy-group":"internal",
+    "bind-http-https":false,
+    "role":""
+  }
+}
