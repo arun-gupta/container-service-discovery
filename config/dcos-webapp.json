@@ -27,7 +27,7 @@
     "GREETER_SERVICE_PATH":"/"
   },
   "labels":{  
-    "HAPROXY_0_VHOST":"dcos-ha-PublicSlav-1BJVOBFSO03MQ-373499472.us-west-2.elb.amazonaws.com",
+    "HAPROXY_0_VHOST":"dcos-PublicSlaveLo-1B7KS7V0OI0Y6-1504556418.us-west-1.elb.amazonaws.com",
     "HAPROXY_GROUP":"external"
   }
 }
