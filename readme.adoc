@@ -35,12 +35,14 @@ docker-compose build
 
 Setup a link:docker.adoc[Docker cluster on AWS] and deploy the application.
 
-image::images/docker-services.png[]
+[.thumb]
+image::images/docker-services.png[scalewidth="50%""]
 
 === Using ECS
 
 Setup an ECS cluster and configure services as explained in link:ecs.adoc[Service Discovery for Microservices with Amazon ECS].
 
+[.thumb]
 image::images/ecs-services.png[]
 
 === Using Kubernetes
