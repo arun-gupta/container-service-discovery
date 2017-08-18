@@ -63,14 +63,16 @@ image::images/ecs-14.png[]
 [.thumb]
 image::images/ecs-15.png[]
 
-== Edit Security Group
+=== Edit Security Group
 
 [.thumb]
 image::images/ecs-16.png[]
 
-== Add Task Definitions
+== Deploy Application
 
-=== Name Task
+=== Add Task Definitions
+
+==== Name Task
 
 [.thumb]
 image::images/ecs-17.png[]
@@ -78,7 +80,7 @@ image::images/ecs-17.png[]
 [.thumb]
 image::images/ecs-18.png[]
 
-=== Greeter Task
+==== Greeter Task
 
 [.thumb]
 image::images/ecs-19.png[]
@@ -86,7 +88,7 @@ image::images/ecs-19.png[]
 [.thumb]
 image::images/ecs-20.png[]
 
-=== Webapp Task
+==== Webapp Task
 
 [.thumb]
 image::images/ecs-21.png[]
@@ -97,9 +99,9 @@ image::images/ecs-22.png[]
 [.thumb]
 image::images/ecs-23.png[]
 
-== Create Service
+=== Services
 
-=== Name Service
+==== Create Name service
 
 [.thumb]
 image::images/ecs-24.png[]
@@ -107,12 +109,12 @@ image::images/ecs-24.png[]
 [.thumb]
 image::images/ecs-25.png[]
 
-==== Check health
+===== Check health
 
 [.thumb]
 image::images/ecs-26.png[]
 
-=== Greeter Service
+==== Create Greeter service
 
 [.thumb]
 image::images/ecs-27.png[]
@@ -120,12 +122,12 @@ image::images/ecs-27.png[]
 [.thumb]
 image::images/ecs-28.png[]
 
-==== Check health
+===== Check health
 
 [.thumb]
 image::images/ecs-29.png[]
 
-=== Webapp Service
+==== Create Webapp service
 
 [.thumb]
 image::images/ecs-30.png[]
@@ -133,11 +135,9 @@ image::images/ecs-30.png[]
 [.thumb]
 image::images/ecs-31.png[]
 
-==== Check health
+===== Check health
 
 [.thumb]
 image::images/ecs-32.png[]
-
-
 
 
