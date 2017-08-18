@@ -83,7 +83,7 @@ http://<host>:<port>?greet=ho&id=1
 | Docker | `localhost` | `8080`
 | ECS | External ALB Address | `80`
 | Kubernetes | Proxy | Proxy
-| DC/OS | `<public-slave>` | `80`
+| DC/OS | Public Slave Address | `80`
 |=======
 
 == Delete services
