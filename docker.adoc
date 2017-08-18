@@ -1,6 +1,6 @@
 :toc:
 
-= Docker CE for AWS
+= Service Discovery for Microservices with Docker CE on AWS
 
 == Create Docker cluster on AWS
 

@@ -33,7 +33,7 @@ docker-compose build
 
 === Using Docker
 
-Setup a link:docker.adoc[Docker cluster on AWS] and deploy the application.
+Setup a Docker cluster and configure services as explained in link:docker.adoc[Service Discovery for Microservices with Docker CE on AWS].
 
 [.thumb]
 image::images/docker-services.png[scalewidth="50%""]
