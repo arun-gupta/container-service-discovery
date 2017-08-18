@@ -33,14 +33,9 @@ docker-compose build
 
 === Using Docker
 
-The parameter values are defined in `config/docker-compose.yml`.
+Setup a link:docker.adoc[Docker cluster on AWS] and deploy the application.
 
-Start the services:
-
-```
-docker swarm init
-docker stack up --compose-file=config/docker-compose.yml webapp
-```
+image::images/docker-services.png[]
 
 === Using ECS
 
