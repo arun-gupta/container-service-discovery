@@ -9,134 +9,134 @@ image::images/ecs-services.png[]
 == Create Cluster
 
 [.thumb]
-image::images/ecs-service-discovery-1.png[]
+image::images/ecs-1.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-2.png[]
+image::images/ecs-2.png[]
 
 == Create Target Groups
 
 [.thumb]
-image::images/ecs-service-discovery-3.png[]
+image::images/ecs-3.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-4.png[]
+image::images/ecs-4.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-5.png[]
+image::images/ecs-5.png[]
 
 == Create Application Load Balancer
 
 === Internal ALB
 
 [.thumb]
-image::images/ecs-service-discovery-6.png[]
+image::images/ecs-6.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-7.png[]
+image::images/ecs-7.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-8.png[]
+image::images/ecs-8.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-9.png[]
+image::images/ecs-9.png[]
 
 ==== Create rules
 
 [.thumb]
-image::images/ecs-service-discovery-10.png[]
+image::images/ecs-10.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-11.png[]
+image::images/ecs-11.png[]
 
 === External ALB
 
 [.thumb]
-image::images/ecs-service-discovery-12.png[]
+image::images/ecs-12.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-13.png[]
+image::images/ecs-13.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-14.png[]
+image::images/ecs-14.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-15.png[]
+image::images/ecs-15.png[]
 
 == Edit Security Group
 
 [.thumb]
-image::images/ecs-service-discovery-16.png[]
+image::images/ecs-16.png[]
 
 == Add Task Definitions
 
 === Name Task
 
 [.thumb]
-image::images/ecs-service-discovery-17.png[]
+image::images/ecs-17.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-18.png[]
+image::images/ecs-18.png[]
 
 === Greeter Task
 
 [.thumb]
-image::images/ecs-service-discovery-19.png[]
+image::images/ecs-19.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-20.png[]
+image::images/ecs-20.png[]
 
 === Webapp Task
 
 [.thumb]
-image::images/ecs-service-discovery-21.png[]
+image::images/ecs-21.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-22.png[]
+image::images/ecs-22.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-23.png[]
+image::images/ecs-23.png[]
 
 == Create Service
 
 === Name Service
 
 [.thumb]
-image::images/ecs-service-discovery-24.png[]
+image::images/ecs-24.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-25.png[]
+image::images/ecs-25.png[]
 
 ==== Check health
 
 [.thumb]
-image::images/ecs-service-discovery-26.png[]
+image::images/ecs-26.png[]
 
 === Greeter Service
 
 [.thumb]
-image::images/ecs-service-discovery-27.png[]
+image::images/ecs-27.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-28.png[]
+image::images/ecs-28.png[]
 
 ==== Check health
 
 [.thumb]
-image::images/ecs-service-discovery-29.png[]
+image::images/ecs-29.png[]
 
 === Webapp Service
 
 [.thumb]
-image::images/ecs-service-discovery-30.png[]
+image::images/ecs-30.png[]
 
 [.thumb]
-image::images/ecs-service-discovery-31.png[]
+image::images/ecs-31.png[]
 
 ==== Check health
 
 [.thumb]
-image::images/ecs-service-discovery-32.png[]
+image::images/ecs-32.png[]
 
 
 
