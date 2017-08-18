@@ -156,3 +156,9 @@ ID                  NAME                     MODE                REPLICAS       
 c6j39rmxi2ix        webapp_name-service      replicated          1/1                 arungupta/name-service:latest      
 ttwfk3jgew42        webapp_greeter-service   replicated          1/1                 arungupta/greeter-service:latest  
 ```
+
+Create an inbound rule for the Master to allow connections over port 80:
+
+[.thumb]
+image::images/docker-9.png[]
+

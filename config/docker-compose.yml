@@ -15,9 +15,9 @@ services:
       - greeter-service
       - name-service
     environment:
-      - NAME_SERVICE_HOST=name
+      - NAME_SERVICE_HOST=name-service
       - NAME_SERVICE_PORT=8080
       - NAME_SERVICE_PATH=
-      - GREETER_SERVICE_HOST=greeter
+      - GREETER_SERVICE_HOST=greeter-service
       - GREETER_SERVICE_PORT=8080
       - GREETER_SERVICE_PATH=

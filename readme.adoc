@@ -23,7 +23,7 @@ All services are built as Node.js application. `webapp` service need to be confi
 
 == Build services
 
-Build the Docker images for different services:
+Build Docker images for different services:
 
 ```
 docker-compose build
@@ -36,7 +36,7 @@ docker-compose build
 Setup a Docker cluster and configure services as explained in link:docker.adoc[Service Discovery for Microservices with Docker on AWS].
 
 [.thumb]
-image::images/docker-services.png[scalewidth="50%"]
+image::images/docker-services.png[]
 
 === Using ECS
 
@@ -77,7 +77,7 @@ http://<host>:<port>?greet=ho&id=1
 [options="header"]
 |=======
 |Framework |<host> |<port>
-| Docker | Master node public IP | `8080`
+| Docker | Master node public IP | `80`
 | ECS | External ALB Address | `80`
 | Kubernetes | Proxy | Proxy
 | DC/OS | Public Slave Address | `80`
