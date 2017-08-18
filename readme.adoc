@@ -33,10 +33,10 @@ docker-compose build
 
 === Using Docker
 
-Setup a Docker cluster and configure services as explained in link:docker.adoc[Service Discovery for Microservices with Docker CE on AWS].
+Setup a Docker cluster and configure services as explained in link:docker.adoc[Service Discovery for Microservices with Docker on AWS].
 
 [.thumb]
-image::images/docker-services.png[scalewidth="50%""]
+image::images/docker-services.png[scalewidth="50%"]
 
 === Using ECS
 
@@ -77,7 +77,7 @@ http://<host>:<port>?greet=ho&id=1
 [options="header"]
 |=======
 |Framework |<host> |<port>
-| Docker | `localhost` | `8080`
+| Docker | Master node public IP | `8080`
 | ECS | External ALB Address | `80`
 | Kubernetes | Proxy | Proxy
 | DC/OS | Public Slave Address | `80`

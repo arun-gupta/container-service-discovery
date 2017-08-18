@@ -1,6 +1,6 @@
 :toc:
 
-= Service Discovery for Microservices with Docker CE on AWS
+= Service Discovery for Microservices with Docker on AWS
 
 == Create Docker cluster on AWS
 
@@ -156,4 +156,3 @@ ID                  NAME                     MODE                REPLICAS       
 c6j39rmxi2ix        webapp_name-service      replicated          1/1                 arungupta/name-service:latest      
 ttwfk3jgew42        webapp_greeter-service   replicated          1/1                 arungupta/greeter-service:latest  
 ```
-
