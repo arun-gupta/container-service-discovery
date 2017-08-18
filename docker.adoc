@@ -2,6 +2,8 @@
 
 = Service Discovery for Microservices with Docker on AWS
 
+This document is referred from link:readme.adoc[Service Discovery in Container Orchestration Frameworks on AWS]. It explains how to setup a Docker cluster and configure service discovery. Refer link:readme.adoc[back] for more details.
+
 == Create Docker cluster on AWS
 
 Start at https://store.docker.com/editions/community/docker-ce-aws
