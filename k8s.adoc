@@ -1,0 +1,109 @@
+:toc:
+
+= Service Discovery for Microservices with Kubernetes
+
+This document is referred from link:readme.adoc[Service Discovery in Container Orchestration Frameworks on AWS]. It explains how to setup a Kubernetes cluster and configure service discovery. Refer link:readme.adoc[back] for more details.
+
+== Create cluster
+
+Detailed steps are available at:
+
+. https://aws.amazon.com/blogs/compute/kubernetes-clusters-aws-kops/[Manage Kubernetes Clusters on AWS Using Kops] - using DNS-based routing
+. http://blog.arungupta.me/gossip-kubernetes-aws-kops/[Gossip-based Kubernetes Cluster on AWS using Kops] - using Gossip-based routing
+
+. Export S3 bucket:
++
+```
+export KOPS_STATE_STORE=s3://kubernetes-aws-io
+```
++
+. Create the cluster:
++
+```
+kops create cluster cluster.k8s.local --zones us-east-1a --yes
+```
++
+`kubectl` is also configured as part of cluster install.
++
+. Validate the cluster:
++
+```
+kops validate cluster
+Using cluster from kubectl context: cluster.k8s.local
+
+Validating cluster cluster.k8s.local
+
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-us-east-1a	Master	m3.medium	1	1	us-east-1a
+nodes			Node	t2.medium	2	2	us-east-1a
+
+NODE STATUS
+NAME				ROLE	READY
+ip-172-20-40-239.ec2.internal	master	True
+ip-172-20-43-101.ec2.internal	node	True
+ip-172-20-45-134.ec2.internal	node	True
+
+Your cluster cluster.k8s.local is ready
+```
++
+. Get the list of nodes:
++
+```
+kubectl get nodes
+NAME                            STATUS    AGE       VERSION
+ip-172-20-40-239.ec2.internal   Ready     3m        v1.7.0
+ip-172-20-43-101.ec2.internal   Ready     2m        v1.7.0
+ip-172-20-45-134.ec2.internal   Ready     2m        v1.7.0
+```
+
+== Deploy the application
+
+. Deploy the application:
++
+```
+kubectl create -f config/k8s-config.yml
+```
++
+. Get the list of services:
++
+```
+kubectl get svc
+NAME              CLUSTER-IP       EXTERNAL-IP        PORT(S)        AGE
+greeter-service   100.64.44.23     <none>             8080/TCP       13s
+kubernetes        100.64.0.1       <none>             443/TCP        23m
+name-service      100.66.113.58    <none>             8080/TCP       13s
+webapp-service    100.71.126.195   a5427e1288472...   80:31234/TCP   12s
+```
++
+. Get more details about the service:
++
+```
+kubectl describe svc/webapp-service
+Name:			webapp-service
+Namespace:		default
+Labels:			<none>
+Annotations:		<none>
+Selector:		app=webapp-pod
+Type:			LoadBalancer
+IP:			100.71.126.195
+LoadBalancer Ingress:	a5427e128847211e782280a896fc2bfc-283874069.us-east-1.elb.amazonaws.com
+Port:			web	80/TCP
+NodePort:		web	31234/TCP
+Endpoints:		100.96.2.12:80
+Session Affinity:	None
+Events:
+  FirstSeen	LastSeen	Count	From			SubObjectPath	Type		Reason			Message
+  ---------	--------	-----	----			-------------	--------	------			-------
+  30s		30s		1	service-controller			Normal		CreatingLoadBalancer	Creating load balancer
+  29s		29s		1	service-controller			Normal		CreatedLoadBalancer	Created load balancer
+```
++
+Wait for ~3 mins for the load balancer to accept request
+
+== Delete application
+
+```
+kubectl delete -f config/k8s-config.yml
+```
+

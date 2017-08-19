@@ -4,6 +4,9 @@
 
 This document is referred from link:readme.adoc[Service Discovery in Container Orchestration Frameworks on AWS]. It explains how to setup a Docker cluster and configure service discovery. Refer link:readme.adoc[back] for more details.
 
+[.thumb]
+image::images/docker-services.png[]
+
 == Create Docker cluster on AWS
 
 Start at https://store.docker.com/editions/community/docker-ce-aws
@@ -135,9 +138,8 @@ Live Restore Enabled: false
 
 == Deploy the application
 
-Deploy the application:
-
-
+. Deploy the application:
++
 ```
 docker -H localhost:2374 stack up --compose-file=config/docker-compose.yml webapp
 Ignoring unsupported options: build
@@ -147,20 +149,27 @@ Creating service webapp_name-service
 Creating service webapp_webapp-service
 Creating service webapp_greeter-service
 ```
-
-List the services:
-
-
++
+. List the services:
++
 ```
-$ docker -H localhost:2374 service ls
+docker -H localhost:2374 service ls
 ID                  NAME                     MODE                REPLICAS            IMAGE                              PORTS
 149hms4paf7b        webapp_webapp-service    replicated          1/1                 arungupta/webapp-service:latest    *:8080->8080/tcp
 c6j39rmxi2ix        webapp_name-service      replicated          1/1                 arungupta/name-service:latest      
 ttwfk3jgew42        webapp_greeter-service   replicated          1/1                 arungupta/greeter-service:latest  
 ```
-
-Create an inbound rule for the Master to allow connections over port 80:
-
++
+. Create an inbound rule for the Master to allow connections over port 80:
++
 [.thumb]
 image::images/docker-9.png[]
+
+== Delete the application
+
+```
+docker -H localhost:2374 stack rm webapp
+```
+
+Make sure to delete the CloudFormation template.
 

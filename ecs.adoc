@@ -4,6 +4,7 @@
 
 This document is referred from link:readme.adoc[Service Discovery in Container Orchestration Frameworks on AWS]. It explains how to setup a Amazon EC2 Container Service cluster and configure service discovery. Refer link:readme.adoc[back] for more details.
 
+[.thumb]
 image::images/ecs-services.png[]
 
 == Create Cluster
@@ -139,5 +140,14 @@ image::images/ecs-31.png[]
 
 [.thumb]
 image::images/ecs-32.png[]
+
+== Delete application
+
+. Scale down all services
+. Delete services
+. Deregister tasks
+. Delete ALB
+. Delete Target Groups
+. Delete cluster
 
 

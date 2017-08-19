@@ -1,6 +1,6 @@
 :toc:
 
-= Service Discovery in Container Orchestration Frameworks on AWS
+= Service Discovery in Containers on AWS
 
 This repo has a simple example that shows service discovery for different container orchestration frameworks.
 
@@ -11,6 +11,8 @@ image::images/services.png[]
 . `webapp`: Web application microservice uses `greeter` and `name` microservice to generate a greeting for a person.
 . `greeter`: A microservice returns a greeting based upon `greet` name/value keypair in the URL.
 . `name`: A microservice that returns person's name based upon `id` name/value keypair in the URL.
+
+These services are built as Docker image and deployed in Docker, Amazon ECS, Kubernetes and DC/OS.
 
 All services are built as Node.js application. `webapp` service need to be configured using the following parameters:
 
@@ -29,43 +31,16 @@ Build Docker images for different services:
 docker-compose build
 ```
 
-== Run services
+== Setup cluster and deploy application
 
-=== Using Docker
+. link:docker.adoc[Docker]
+. link:ecs.adoc[Amazon ECS]
+. link:k8s.adoc[Kubernetes]
+. link:dcos.adoc[DC/OS]
 
-Setup a Docker cluster and configure services as explained in link:docker.adoc[Service Discovery for Microservices with Docker on AWS].
+== Access application
 
-[.thumb]
-image::images/docker-services.png[]
-
-=== Using ECS
-
-Setup an ECS cluster and configure services as explained in link:ecs.adoc[Service Discovery for Microservices with Amazon ECS].
-
-[.thumb]
-image::images/ecs-services.png[]
-
-=== Using Kubernetes
-
-Start a single node Kubernetes cluster using minikube. Create resources:
-
-```
-kubectl create -f config/k8s-config.yml
-kubectl expose service webapp-service --port=8080 --target-port=8080 --name=web
-kubectl proxy
-```
-
-Access endpoint: `curl http://localhost:8001/api/v1/proxy/namespaces/default/services/web/`
-
-=== Using DC/OS
-
-. Install DC/OS on AWS using https://downloads.dcos.io/dcos/stable/1.9.1/aws.html?_ga=2.16283190.123750055.1502715145-1655111557.1497965615[Cloud Formation] templates.
-. Download and configure https://docs.mesosphere.com/1.9/cli/configure/[DC/OS CLI].
-. Setup a DC/OS cluster and configure services as explained in link:dcos.adoc[Service Discovery for Microservices with DC/OS].
-
-== Access service using web application
-
-Access the following URLs using curl or in browser:
+Access the following URLs using `curl` or in browser:
 
 ```
 http://<host>:<port>
@@ -79,35 +54,7 @@ http://<host>:<port>?greet=ho&id=1
 |Framework |<host> |<port>
 | Docker | Master node public IP | `80`
 | ECS | External ALB Address | `80`
-| Kubernetes | Proxy | Proxy
+| Kubernetes | Load Balancer Ingress | `80`
 | DC/OS | Public Slave Address | `80`
 |=======
 
-== Delete services
-
-=== Using Docker
-
-```
-docker stack rm webapp
-docker swarm leave -f
-```
-
-=== Using ECS
-
-. Scale down all services
-. Delete services
-. Deregister tasks
-. Delete ALB
-. Delete Target Groups
-. Delete cluster
-
-=== Using Kubernetes
-
-```
-kubectl delete svc/web
-kubectl delete -f config/k8s-config.yml
-```
-
-=== Using DC/OS
-
-TBD
