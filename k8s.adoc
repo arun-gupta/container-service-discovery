@@ -104,9 +104,10 @@ Events:
 +
 Wait for ~3 mins for the load balancer to accept request
 
-== Delete application
+== Delete application and cluster
 
 ```
 kubectl delete -f config/k8s-config.yml
+kops delete cluster cluster.k8s.local --yes
 ```
 

@@ -165,7 +165,7 @@ ttwfk3jgew42        webapp_greeter-service   replicated          1/1            
 [.thumb]
 image::images/docker-9.png[]
 
-== Delete the application
+== Delete application and cluster
 
 ```
 docker -H localhost:2374 stack rm webapp

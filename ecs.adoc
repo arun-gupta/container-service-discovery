@@ -141,7 +141,7 @@ image::images/ecs-31.png[]
 [.thumb]
 image::images/ecs-32.png[]
 
-== Delete application
+== Delete application and cluster
 
 . Scale down all services
 . Delete services
