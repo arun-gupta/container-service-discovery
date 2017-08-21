@@ -60,7 +60,7 @@ ip-172-20-43-101.ec2.internal   Ready     2m        v1.7.0
 ip-172-20-45-134.ec2.internal   Ready     2m        v1.7.0
 ```
 
-== Deploy the application
+== Deploy application
 
 . Deploy the application:
 +

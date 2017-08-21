@@ -69,7 +69,7 @@ image::images/ecs-15.png[]
 [.thumb]
 image::images/ecs-16.png[]
 
-== Deploy Application
+== Deploy application
 
 === Add Task Definitions
 

@@ -22,4 +22,6 @@ dcos marathon app add config/dcos-name.json
 dcos marathon app add config/dcos-webapp.json
 ```
 
-== Delete application
+== Delete application and cluster
+
+TBD

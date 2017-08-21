@@ -7,7 +7,7 @@ This document is referred from link:readme.adoc[Service Discovery in Container O
 [.thumb]
 image::images/docker-services.png[]
 
-== Create Docker cluster on AWS
+== Create cluster on AWS
 
 Start at https://store.docker.com/editions/community/docker-ce-aws
 
@@ -136,7 +136,7 @@ Insecure Registries:
 Live Restore Enabled: false
 ```
 
-== Deploy the application
+== Deploy application
 
 . Deploy the application:
 +
