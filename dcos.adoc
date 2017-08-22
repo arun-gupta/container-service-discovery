@@ -24,4 +24,6 @@ dcos marathon app add config/dcos-webapp.json
 
 == Delete application and cluster
 
-TBD
+. Delete the CloudFormation template
+
+This will delete the deployed application as well.
