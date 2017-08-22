@@ -4,6 +4,9 @@
 
 This document is referred from link:readme.adoc[Service Discovery in Container Orchestration Frameworks on AWS]. It explains how to setup a DC/OS cluster and configure service discovery. Refer link:readme.adoc[back] for more details.
 
+[.thumb]
+image::images/dcos-services.png[]
+
 == Create cluster
 
 . Install DC/OS on AWS using https://downloads.dcos.io/dcos/stable/1.9.1/aws.html?_ga=2.16283190.123750055.1502715145-1655111557.1497965615[Cloud Formation] templates.
