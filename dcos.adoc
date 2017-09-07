@@ -15,14 +15,64 @@ image::images/dcos-services.png[]
 
 == Deploy application
 
-Install the following components:
-
+. Deploy the external load balancer:
++
 ```
-dcos package install marathon-lb
-dcos package install marathon-lb --options=config/dcos-marathon-lb-internal.json
-dcos marathon app add config/dcos-greeter.json
-dcos marathon app add config/dcos-name.json
-dcos marathon app add config/dcos-webapp.json
+$ dcos package install marathon-lb --yes
+We recommend at least 2 CPUs and 1GiB of RAM for each Marathon-LB instance.
+
+*NOTE*: For additional ``Enterprise Edition`` DC/OS instructions, see https://docs.mesosphere.com/administration/id-and-access-mgt/service-auth/mlb-auth/
+Installing Marathon app for package [marathon-lb] version [1.10.0]
+Marathon-lb DC/OS Service has been successfully installed!
+See https://github.com/mesosphere/marathon-lb for documentation.
+```
++
+. Deploy the internal load balancer
++
+```
+$ dcos package install marathon-lb --options=config/dcos-marathon-lb-internal.json --yes
+
+We recommend at least 2 CPUs and 1GiB of RAM for each Marathon-LB instance.
+
+*NOTE*: For additional ```Enterprise Edition``` DC/OS instructions, see https://docs.mesosphere.com/administration/id-and-access-mgt/service-auth/mlb-auth/
+Installing Marathon app for package [marathon-lb] version [1.10.0]
+Marathon-lb DC/OS Service has been successfully installed!
+See https://github.com/mesosphere/marathon-lb for documentation.
+```
++
+. Deploy the Greater Application
++
+```
+$ dcos marathon app add config/dcos-greeter.json
+Created deployment 904a5be4-6134-4d79-9b22-7c9067ef27d2
+```
++
+. Deploy the Name Application
++
+```
+$ dcos marathon app add config/dcos-name.json
+Created deployment 1ba6c53d-4044-4abd-b3d0-e0c50b6e7ac8
+```
++
+. Get Public DNS Address `PublicSlaveDnsAddress`
++
+[.thumb]
+image::images/dcos-1.png[]
++
+. Modify `HAPROXY_0_VHOST` in `config/dcos-webapp.json`
++
+```
+  "labels":{  
+    "HAPROXY_0_VHOST":"{PublicSlaveDnsAddress}",
+    ...
+  }
+```
++
+. Deploy the WebApp
++
+```
+$ dcos marathon app add config/dcos-webapp.json
+Created deployment b960c005-dcf6-4cc4-a6ec-2cfb81f9c5a3
 ```
 
 == Delete application and cluster
