@@ -13,6 +13,13 @@ image::images/dcos-services.png[]
 . Download and configure https://docs.mesosphere.com/1.9/cli/configure/[DC/OS CLI].
 . Setup a DC/OS cluster and configure services as explained in link:dcos.adoc[Service Discovery for Microservices with DC/OS].
 
+== Configure CLI
+
+```
+dcos config set core.dcos_url https://DCOS-ElasticLoadBa-xxxxxx
+dcos auth login
+```
+
 == Deploy application
 
 . Deploy the external load balancer:
