@@ -9,13 +9,21 @@ image::images/ecs-services.png[]
 
 == Create Cluster
 
+By default, ECS requires to create task/container definition first. Cancel that, and instead create the cluster first.
+
+Start a new cluster at https://us-west-1.console.aws.amazon.com/ecs/home?region=us-west-1#.
+
 [.thumb]
 image::images/ecs-1.png[]
 
 [.thumb]
 image::images/ecs-2.png[]
 
+Note down the VPC id shown in the output.
+
 == Create Target Groups
+
+Create target groups for `name`, `greeter` and `webapp`.
 
 [.thumb]
 image::images/ecs-3.png[]
@@ -27,6 +35,8 @@ image::images/ecs-4.png[]
 image::images/ecs-5.png[]
 
 == Create Application Load Balancer
+
+Create internal and external ALB.
 
 === Internal ALB
 
