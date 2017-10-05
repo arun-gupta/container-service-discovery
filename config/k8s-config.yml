@@ -9,9 +9,9 @@ spec:
     - port: 8080
 ---
 apiVersion: extensions/v1beta1
-kind: ReplicaSet
+kind: Deployment
 metadata:
-  name: name-rs
+  name: name-deployment
 spec:
   replicas: 1
   template:
@@ -36,9 +36,9 @@ spec:
     - port: 8080
 ---
 apiVersion: extensions/v1beta1
-kind: ReplicaSet
+kind: Deployment
 metadata:
-  name: greeter-rs
+  name: greeter-deployment
 spec:
   replicas: 1
   template:
@@ -65,9 +65,9 @@ spec:
   type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
-kind: ReplicaSet
+kind: Deployment
 metadata:
-  name: webapp-rs
+  name: webapp-deployment
 spec:
   replicas: 1
   template:
