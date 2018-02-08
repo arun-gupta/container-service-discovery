@@ -1,18 +1,13 @@
-FROM node:boron
+FROM openjdk:8-jre-alpine
 
-# Create app directory
-WORKDIR /usr/src/app
+ENV VERTICLE_FILE sample-webapp-1.0-SNAPSHOT.jar
 
-# Install app dependencies
-COPY package.json .
-# For npm@5 or later, copy package-lock.json as well
-# COPY package.json package-lock.json .
-
-RUN npm install
-
-# Bundle app source
-COPY . .
+ENV VERTICLE_HOME /usr/verticles
 
 EXPOSE 8080
-CMD [ "npm", "start" ]
 
+COPY target/$VERTICLE_FILE $VERTICLE_HOME/
+
+WORKDIR $VERTICLE_HOME
+ENTRYPOINT ["sh", "-c"]
+CMD ["exec java -jar $VERTICLE_FILE"]
